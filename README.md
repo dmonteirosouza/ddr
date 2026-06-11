@@ -69,14 +69,18 @@ Each ZIP contains:
 - `install.command`: double-click installer for non-technical users.
 - `LEIA-ME.txt`: short install/removal instructions.
 
-On GitHub, create a tag to publish these ZIPs automatically:
+Maintainers publish these ZIPs from `main` only after the release pull request has been reviewed and merged:
 
 ```bash
+git checkout main
+git pull origin main
 git tag v0.1.0
 git push origin v0.1.0
 ```
 
-You can also run the release workflow manually from GitHub Actions with a version input like `v0.1.0`.
+Do not push release changes directly to `main`. Put the change in a pull request first, merge it, then create and push the release tag.
+
+You can also run the release workflow manually from GitHub Actions with a version input like `v0.1.0`, after the release changes are already on `main`.
 
 ## Project Layout
 
