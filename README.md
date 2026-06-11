@@ -4,6 +4,8 @@
 
 The default posture is conservative: reports are read-only, and cleanup commands require `--yes`.
 
+Instead of dumping raw command output, `ddr` extracts the important numbers and renders compact terminal summaries for disk, memory, Docker, VS Code, and heavy folders.
+
 ## Commands
 
 ```bash
@@ -21,10 +23,10 @@ ddr chrome
 
 ## What It Does
 
-- `scan`: shows disk, memory, Docker usage, and common heavy folders.
-- `memory`: shows RAM/swap pressure and top memory processes.
-- `docker`: shows Docker disk usage and reminds you that volumes are not cleaned by default.
-- `vscode`: reports VS Code storage and installed extensions.
+- `scan`: shows parsed disk, memory, Docker, process, and heavy-folder summaries.
+- `memory`: shows RAM/swap pressure plus process families and top memory processes.
+- `docker`: shows parsed Docker disk usage and reminds you that volumes are not cleaned by default.
+- `vscode`: reports VS Code storage, tuning status, and installed extensions.
 - `vscode --apply`: backs up VS Code settings and applies lighter defaults for Codex, GitLens, TypeScript, watchers, and editor limits.
 - `clean --safe --yes`: prunes Docker build cache, npm cache, and Gradle caches.
 - `clean --all-safe --yes`: also prunes stopped containers, unused networks, and unused Docker images, preserving volumes.
