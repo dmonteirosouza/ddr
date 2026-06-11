@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+var Version = "dev"
+
 // Run executes the CLI command selected by args.
 func Run(args []string) error {
 	command, flags := parseArgs(args)
@@ -14,6 +16,9 @@ func Run(args []string) error {
 		return scan()
 	case "help", "--help", "-h":
 		printHelp()
+		return nil
+	case "version", "--version", "-v":
+		fmt.Printf("ddr %s\n", Version)
 		return nil
 	case "memory", "mem":
 		return memory()
@@ -60,6 +65,7 @@ Uso:
   ddr clean --all-safe --yes
   ddr clean --vscode-storage --yes
   ddr chrome
+  ddr version
 
 Limpeza:
   --safe           cache de build do Docker + npm + Gradle

@@ -44,11 +44,43 @@ go build -o ~/.local/bin/ddr ./cmd/ddr
 
 Make sure `~/.local/bin` is in your `PATH`.
 
+## Releases For Non-Technical Users
+
+Installers are generated only as release artifacts, not committed to the repository.
+
+To build release ZIPs locally:
+
+```bash
+./scripts/package-release.sh v0.1.0
+```
+
+This creates:
+
+```text
+dist/ddr_v0.1.0_darwin_arm64.zip
+dist/ddr_v0.1.0_darwin_amd64.zip
+```
+
+Each ZIP contains:
+
+- `ddr`: the macOS binary.
+- `install.command`: double-click installer for non-technical users.
+- `LEIA-ME.txt`: short install/removal instructions.
+
+On GitHub, create a tag to publish these ZIPs automatically:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
 ## Project Layout
 
 ```text
 .
+├── .github/workflows/release.yml # tagged release packaging
 ├── cmd/ddr/main.go             # CLI binary entrypoint
+├── scripts/package-release.sh  # builds release ZIPs
 ├── internal/app/app.go         # command routing
 ├── internal/app/commands.go    # command workflows
 ├── internal/app/chrome.go      # Chrome checklist

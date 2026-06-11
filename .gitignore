@@ -3,4 +3,6 @@
 coverage/
 /ddr
 /bin/
+/dist/
+/.release/
 .gocache/
