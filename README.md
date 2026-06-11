@@ -4,7 +4,7 @@
 
 The default posture is conservative: reports are read-only, and cleanup commands require `--yes`.
 
-Instead of dumping raw command output, `ddr` extracts the important numbers and renders compact terminal summaries for disk, memory, Docker, VS Code, and heavy folders.
+Instead of dumping raw command output, `ddr` extracts the important numbers and renders a colorful terminal dashboard with simple statuses and tips.
 
 ## Commands
 
@@ -48,8 +48,20 @@ Make sure `~/.local/bin` is in your `PATH`.
 
 ```text
 .
-├── cmd/ddr/main.go        # CLI binary entrypoint
-├── internal/app/app.go    # application commands, reports, and macOS helpers
+├── cmd/ddr/main.go             # CLI binary entrypoint
+├── internal/app/app.go         # command routing
+├── internal/app/commands.go    # command workflows
+├── internal/app/chrome.go      # Chrome checklist
+├── internal/app/clean.go       # conservative cleanup workflow
+├── internal/app/disk.go        # disk report
+├── internal/app/docker.go      # Docker report/parsing
+├── internal/app/memory.go      # memory/swap report
+├── internal/app/processes.go   # process collection/grouping
+├── internal/app/sizes.go       # heavy-folder sizing
+├── internal/app/system.go      # shell/system helpers
+├── internal/app/vscode.go      # VS Code report/settings
+├── internal/app/vscode_settings.go # VS Code settings writer
+├── internal/ui/ui.go           # colored terminal UI helpers
 ├── go.mod
 └── README.md
 ```
