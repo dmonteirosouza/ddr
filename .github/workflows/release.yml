@@ -1,6 +1,11 @@
 name: Release
 
 on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release tag, for example v0.1.0"
+        required: true
   push:
     tags:
       - "v*"
@@ -11,6 +16,8 @@ permissions:
 jobs:
   release:
     runs-on: macos-latest
+    env:
+      RELEASE_VERSION: ${{ inputs.version || github.ref_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,9 +31,9 @@ jobs:
         run: go test ./...
 
       - name: Package
-        run: ./scripts/package-release.sh "${GITHUB_REF_NAME}"
+        run: ./scripts/package-release.sh "${RELEASE_VERSION}"
 
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "${GITHUB_REF_NAME}" dist/*.zip --generate-notes --title "${GITHUB_REF_NAME}"
+        run: gh release create "${RELEASE_VERSION}" dist/*.zip --generate-notes --title "${RELEASE_VERSION}"
