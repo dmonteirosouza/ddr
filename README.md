@@ -44,6 +44,18 @@ go build -o ~/.local/bin/ddr ./cmd/ddr
 
 Make sure `~/.local/bin` is in your `PATH`.
 
+## Project Layout
+
+```text
+.
+├── cmd/ddr/main.go        # CLI binary entrypoint
+├── internal/app/app.go    # application commands, reports, and macOS helpers
+├── go.mod
+└── README.md
+```
+
+This follows the common Go layout where `cmd/ddr` stays thin and code that should not be imported by external projects lives under `internal`.
+
 ## Safety Notes
 
 `ddr` never removes Docker volumes automatically. Volumes may contain databases, local object storage, model files, and other project data.
