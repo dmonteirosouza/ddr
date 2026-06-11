@@ -139,6 +139,14 @@ go build -o ./ddr ./cmd/ddr
 
 ### Before Opening A Pull Request
 
+Create a branch for your change:
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b docs/update-readme
+```
+
 Run:
 
 ```bash
@@ -158,15 +166,34 @@ If your change affects a report, also run the related command, for example:
 ./ddr vscode
 ```
 
-### Release Checklist
-
-For maintainers:
+Commit and open a pull request:
 
 ```bash
+git add .
+git commit -m "Describe your change"
+git push -u origin docs/update-readme
+gh pr create --base main --head docs/update-readme --fill
+```
+
+If you need to adjust the last local commit before pushing, amend it:
+
+```bash
+git add .
+git commit --amend
+```
+
+Do not push directly to `main`; use a pull request so changes can be reviewed.
+
+### Release Checklist
+
+For maintainers, after the release PR has been reviewed and merged:
+
+```bash
+git checkout main
+git pull origin main
 go test ./...
 ./scripts/package-release.sh v0.1.0
 git tag v0.1.0
-git push origin main
 git push origin v0.1.0
 ```
 
