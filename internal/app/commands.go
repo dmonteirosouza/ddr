@@ -25,6 +25,7 @@ func scan() error {
 	section("Proximos passos")
 	fmt.Println("  ddr clean                 mostra o plano de limpeza, sem apagar nada")
 	fmt.Println("  ddr clean --safe --yes    executa limpeza conservadora")
+	fmt.Println("  ddr clean --all-caches    lista todos os caches de ferramentas antes de apagar")
 	fmt.Println("  ddr vscode --apply        aplica ajustes leves no VS Code com backup")
 	fmt.Println("  ddr chrome                checklist para quem usa muitas abas")
 	return nil
@@ -55,6 +56,7 @@ func dockerReport() error {
 	fmt.Println("\nLimpeza:")
 	fmt.Println("  ddr clean --safe --yes      limpa cache de build, npm e Gradle")
 	fmt.Println("  ddr clean --all-safe --yes  tambem limpa containers parados e imagens sem uso")
+	fmt.Println("  ddr clean --docker-build --yes  limpa apenas cache de build")
 	fmt.Println("\nVolumes do Docker sao preservados de proposito.")
 	return nil
 }
