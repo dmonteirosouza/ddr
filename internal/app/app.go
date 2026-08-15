@@ -62,16 +62,32 @@ Uso:
   ddr vscode --apply
   ddr clean
   ddr clean --safe --yes
+  ddr clean --npm --gradle --yes
+  ddr clean --go-build --pip --yes
+  ddr clean --all-caches --yes
   ddr clean --all-safe --yes
   ddr clean --vscode-storage --yes
   ddr chrome
   ddr version
 
 Limpeza:
-  --safe           cache de build do Docker + npm + Gradle
-  --all-safe       --safe + containers parados, redes e imagens sem uso
-  --vscode-storage remove workspaceStorage do VS Code; feche o VS Code antes
-  --yes            necessario para apagar qualquer coisa
+  --docker-build        cache de build do Docker
+  --docker-system       containers parados, redes e imagens Docker sem uso
+  --npm                 cache do npm
+  --yarn                cache do Yarn
+  --pnpm                store do pnpm
+  --gradle              caches do Gradle
+  --go-build            cache de build do Go
+  --go-mod              cache de modulos do Go
+  --pip                 cache do pip
+  --pub                 cache do Dart/Flutter Pub
+  --cocoapods           cache do CocoaPods
+  --xcode-derived-data  Xcode DerivedData
+  --vscode-storage      remove workspaceStorage do VS Code; feche o VS Code antes
+  --safe                Docker build + npm + Gradle
+  --all-safe            --safe + containers parados, redes e imagens sem uso
+  --all-caches          todos os caches de ferramentas, sem VS Code storage nem Docker system
+  --yes                 necessario para apagar qualquer coisa
 
 Notas:
   Volumes do Docker nunca sao apagados automaticamente.

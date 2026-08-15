@@ -47,9 +47,10 @@ func commandExists(name string) bool {
 
 func removeKnownPath(fullPath string) {
 	allowed := map[string]bool{
-		expand("~/.gradle/caches"):        true,
-		expand("~/.gradle/wrapper/dists"): true,
-		vscodeWorkspaceStoragePath:        true,
+		expand("~/.gradle/caches"):                      true,
+		expand("~/.gradle/wrapper/dists"):               true,
+		expand("~/Library/Developer/Xcode/DerivedData"): true,
+		vscodeWorkspaceStoragePath:                      true,
 	}
 
 	if !allowed[fullPath] {

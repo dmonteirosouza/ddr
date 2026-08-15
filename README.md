@@ -16,6 +16,9 @@ ddr vscode
 ddr vscode --apply
 ddr clean
 ddr clean --safe --yes
+ddr clean --npm --gradle --yes
+ddr clean --go-build --pip --yes
+ddr clean --all-caches --yes
 ddr clean --all-safe --yes
 ddr clean --vscode-storage --yes
 ddr chrome
@@ -30,8 +33,11 @@ ddr version
 - `vscode`: reports VS Code storage, tuning status, and installed extensions.
 - `vscode --apply`: backs up VS Code settings and applies lighter defaults for Codex, GitLens, TypeScript, watchers, and editor limits.
 - `clean --safe --yes`: prunes Docker build cache, npm cache, and Gradle caches.
+- `clean --npm --gradle --yes`: runs only the selected cleanup targets.
+- `clean --all-caches --yes`: cleans tool caches for Docker build, Node package managers, Gradle, Go, pip, Pub, CocoaPods, and Xcode DerivedData.
 - `clean --all-safe --yes`: also prunes stopped containers, unused networks, and unused Docker images, preserving volumes.
 - `clean --vscode-storage --yes`: removes VS Code workspace cache/state. Close VS Code first.
+- `clean` plans show estimated reclaimable space before anything is deleted.
 - `chrome`: prints the Chrome settings checklist for tab-heavy usage.
 - `version`: prints the current build version.
 
@@ -140,6 +146,7 @@ go build -o ./ddr ./cmd/ddr
 - Never delete Docker volumes automatically.
 - Any destructive cleanup must require `--yes`.
 - Keep release artifacts out of Git; use `scripts/package-release.sh`.
+- Prefer adding new cleanup items as individual flags in `internal/app/clean.go` so users can choose exactly what to delete.
 
 ### Before Opening A Pull Request
 
